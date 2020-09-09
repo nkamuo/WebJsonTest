@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html>
+  <body>
+    <form id="form">
+      <input name="fullname" required>
+      <input name="email" type="email" required>
+      <input name="phone" type="tel" required>
+      <input name="password" type="password" required>
+      
+<button type="submit">Submit</button>
+      
+      </form>
+      
+      <script>
+        
+        function submit(evt){
+          evt.preventDefault();
+          console.log("Sending Request");
+          
+          let form = evt.target;
+          let api = "website.com/register";
+          
+          let formData = document.forms['userForm'];
+          
+          let user ={} ;
+          
+          user.fullname = FormData.fullname.value;
+          user.email = FormData.email.value;
+          user.phone = formData.phone.value;
+          user.password = formData.password.value;
+          
+          const headers = new Headers ;
+          headers. append ('Content-Type', 'application/json');
+          
+          
+          var request = new Request(api, {headers});
+          request.body = JSON.stringify(user);
+          
+          fetch(request)
+           .then( res => alert("Account Created"))
+          .catch( err => alert("Error occured"));
+          
+          fetch(api);
+          
+        }
+        
+        const form = document.getElementById('form');
+        
+        console.log(form);
+        
+        form.addEventListener('submit',submit);
+      </script>
+  </body>
